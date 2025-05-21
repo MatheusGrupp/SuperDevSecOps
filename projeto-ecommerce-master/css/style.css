@@ -1,0 +1,191 @@
+body{
+    display: flex;
+    margin: 0px;
+}
+
+.areaTotal{
+    background-color: whitesmoke;
+    margin: 0px;
+    width: 100%;
+    height: 1647px;
+}
+
+.header{
+    background-color: #2c2c2c;
+    color: #fff;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.menu{
+    background-color: whitesmoke;
+    height: 150px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.btn{
+    background-color:  whitesmoke;
+    border-radius: 12px;
+    transition-duration: 0.4s;
+    padding: 10px;
+    width: 100%;
+    height: 60px;
+    font-weight: bold;
+    font-size: large;
+}
+
+.btn:hover{
+    background-color: white;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    cursor: pointer;
+}
+
+.btnProdutos{
+    margin: auto;
+    width: 600px;
+    position: relative;
+}
+
+.btnLateral{
+    width: 150px;
+    position: relative;
+    margin: 20px;
+}
+
+.logo{
+    cursor: pointer;
+}
+
+.clientesTitulo{
+    height: 100px;
+    border-style: solid hidden hidden hidden;
+    font-weight: bold;
+    font-size: xxx-large;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.clientes{
+    height: 360px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-style: hidden hidden solid hidden;
+}
+
+.card{
+    width: 300px;
+    height: 300px;
+    background-color: #2c2c2c;
+    margin: auto;
+    border-radius: 12px;
+    float: left;
+    transition-duration: 0.4s;
+    border-style: solid;
+    border-color: #fff;
+}
+
+.card:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.cardImagem{
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardNome{
+    height:25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: xx-large;
+    font-weight: bold;
+    color: #fff
+}
+
+.cardTexto{
+    height:25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+}
+
+.contato{
+    height: 210px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contatoCard{
+    width: 600px;
+    height: 150px;
+    background-color: #fff;
+    margin: auto;
+    border-radius: 12px;
+    float: left;
+    border-style: solid;
+    border-color: #2c2c2c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contatoCardTexto{
+    width: 400px;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.contatoCardImg{
+    margin: auto;
+}
+
+.rodape{
+    background-color: #2c2c2c;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rodapeCard{
+    width: 200px;
+    height: 100px;
+    margin: auto;
+    border-radius: 12px;
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rodapeImg{
+    margin: auto;
+}
+
+.rodapeTexto{
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+    color: #fff;
+}

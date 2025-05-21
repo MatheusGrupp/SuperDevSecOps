@@ -1,0 +1,183 @@
+body{
+    display: flex;
+    margin: 0px;
+}
+
+.areaTotal{
+    background-color: whitesmoke;
+    margin: 0px;
+    width: 100%;
+    height: 968px;
+}
+
+.header{
+    background-color: #2c2c2c;
+    color: #fff;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.menu{
+    background-color: whitesmoke;
+    height: 150px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.btn{
+    background-color: whitesmoke;
+    border-radius: 12px;
+    transition-duration: 0.4s;
+    padding: 10px;
+    width: 100%;
+    height: 60px;
+    font-weight: bold;
+    font-size: large;
+}
+
+.btn:hover{
+    background-color: white;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    cursor: pointer;
+}
+
+.btnProdutos{
+    margin: auto;
+    width: 600px;
+    position: relative;
+}
+
+.btnLateral{
+    width: 150px;
+    position: relative;
+    margin: 20px;
+}
+
+.logo{
+    cursor: pointer;
+}
+
+.carrinho{
+    width: 100%;
+    height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.listaCarrinho{
+    width: 70%;
+    height: 700px;
+    float: left;
+}
+
+.listaCarrinhoSpacing{
+    width: 100%;
+    height: 100px;
+}
+
+.carrinhoCard{
+    width: 70%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    margin-left: 15%;
+    float: left;
+    transition-duration: 0.4s;
+    border-style: solid;
+    border-color: #2c2c2c;
+}
+
+.carrinhoNome{
+    width: 60%;
+    text-align: center;
+    font-size: xx-large;
+    font-weight: bold;
+    border-style: hidden solid hidden hidden;
+    border-color: #2c2c2c;
+}
+
+.carrinhoVal{
+    width: 40%;
+    text-align: center;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.checkout{
+    width: 30%;
+    height: 700px;
+    float: left;
+}
+
+.checkoutCard{
+    width: 80%;
+    height: 330px;
+    background-color: #fff;
+    border-style: solid;
+    border-color: #2c2c2c;
+}
+
+.valorTotal{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.checkoutBtn{
+    width: 90%;
+    height: 30%;
+    margin-left: 5%;
+    margin-bottom: 10%;
+    background-color: #858585;
+    border-radius: 12px;
+    transition-duration: 0.4s;
+    font-weight: bold;
+    font-size: large;
+}
+
+.checkoutBtn:hover{
+    background-color: white;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    cursor: pointer;
+}
+
+.rodape{
+    background-color: #2c2c2c;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rodapeCard{
+    width: 200px;
+    height: 100px;
+    margin: auto;
+    border-radius: 12px;
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rodapeImg{
+    margin: auto;
+}
+
+.rodapeTexto{
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+    color: #fff;
+}

@@ -1,0 +1,121 @@
+<html>
+
+    <head>
+
+        <link rel="stylesheet" href="../css/produtos.css" />
+		<meta charset="utf-8"/>
+		<script src="../js/products.js" defer></script>
+
+    </head>
+
+    <body>
+        
+        <div class="areaTotal">
+
+            <div class="header">Pequeninos</div>
+
+            <div class="menu">
+				
+				<div class="btnLateral">
+
+					<img onclick="gotoIndex()" class="logo" src="../assets/iconspequeninos/pequeninos.png" height="150px"/>
+
+				</div>
+				
+
+				<div class="btnProdutos">
+
+					<button onclick="gotoProducts()" class="btn">Confira nossos Produtos!</button>
+
+				</div>
+
+				<div class="btnLateral">
+
+					<button onclick="gotoCart()" class="btn">Carrinho</button>
+
+				</div>
+				
+			</div>
+
+            <div class="produtos">
+
+                <div class="produtosCard">
+                    <div class="produtosImg">
+                        <img src="../assets/produtos/produto1.jpeg" width="100%" >
+                    </div>
+                    <div class="produtosInfo">
+                        <div id="cycloneInfo"></div>
+                        <form id="cycloneForm">
+                            <input type="hidden" name="nome" value="Bermuda Cyclone">
+                            <button type="button" onclick="adicionarCarrinho('cycloneForm')" class="produtosBtn">Adicionar ao Carrinho</button>
+                        </form>
+                        
+                    </div>
+                </div>
+
+                <div class="produtosCard">
+                    <div class="produtosImg">
+                        <img src="../assets/produtos/produto2.jpeg" width="100%">
+                    </div>
+                    <div class="produtosInfo">
+                        <div id="boneInfo"></div>
+                        <form id="boneForm">
+                            <input type="hidden" name="nome" value="Boné Kondzilla">
+                            <button type="button" onclick="adicionarCarrinho('boneForm')" class="produtosBtn">Adicionar ao Carrinho</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="produtos">
+
+                <div class="produtosCard">
+                    <div class="produtosImg">
+                        <img src="../assets/produtos/produto3.jpeg" width="100%">
+                    </div>
+                    <div class="produtosInfo">
+                        <div id="messiInfo"></div>
+                        <form id="messiForm">
+                            <input type="hidden" name="nome" value="Camisa do Messi">
+                            <button type="button" onclick="adicionarCarrinho('messiForm')" class="produtosBtn">Adicionar ao Carrinho</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="produtosCard">
+                    <div class="produtosImg">
+                        <img src="../assets/produtos/produto4.jpeg" width="100%">
+                    </div>
+                    <div class="produtosInfo">
+                        <div id="kennerInfo"></div>
+                        <form id="kennerForm">
+                            <input type="hidden" name="nome" value="Chinelo Kenner">
+                            <button type="button" onclick="adicionarCarrinho('kennerForm')" class="produtosBtn">Adicionar ao Carrinho</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="rodape">
+
+				<div class="rodapeCard">
+					<img class="rodapeImg" src="../assets/icon-facebook.png" height="50%">
+					<div class="rodapeTexto">@pequeninos_curitiba</div>
+				</div>
+
+				<div class="rodapeCard">
+					<img class="rodapeImg" src="../assets/icon-instagram.png" height="50%">
+					<div class="rodapeTexto">@pequeninos_curitiba</div>
+				</div>
+
+			</div>
+
+            </div>
+
+        </div>
+
+    </body>
+
+</html>

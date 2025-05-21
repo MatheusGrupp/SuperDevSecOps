@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: meu-deploy
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: meu-deploy
+  template:
+    metadata:
+      labels:
+        app: meu-deploy
+    spec:
+      securityContext:
+        fsGroup: 33  # ID de grupo comum para www-data no Debian e derivados
+      containers:
+        - name: meu-deploy
+          image: k1cornelsenp/projeto-ecommerce:latest
+          env:
+            - name: DB_HOST
+              value: "database-service"
+            - name: DB_USER
+              value: "toor"
+            - name: DB_PASSWORD
+              value: "senhasecure1234#"
+              name: DB_NAME
+              value: "projetosemestral"
+          ports:
+            - containerPort: 80
+              name: http
+          volumeMounts:
+            - name: app-content
+              mountPath: /var/www/html  # Monta o conteúdo diretamente em /var/www/html para servir corretamente
+      volumes:
+        - name: app-content
+          hostPath:
+            path: /var/www/html/projeto-ecommerce  # Altere este caminho para o local do código-fonte no host
+            type: Directory
+

@@ -1,0 +1,20 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/login.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="../js/login.js" defer></script>
+</head>
+<body>
+    <div class="form">
+        <img src="../assets/iconspequeninos/pequeninos.png" width="100%">
+        <h1 class="header">Login</h1>
+        <form id="formLogin">
+            <input class="input" type="email" id="email" name="email" placeholder="Email" required>
+            <input class="input" type="password" id="password" name="password" placeholder="Senha" required>
+            <button onclick="login()" type="button" class="submit">Login</button>
+        </form>
+        <a href="../pages/register.html" class="link">Não possui uma conta? Clique aqui para se registrar.</a>
+    </div>
+</body>
+</html>

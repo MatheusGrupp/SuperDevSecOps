@@ -1,0 +1,23 @@
+version: v1.18.0
+ignore:
+  php/HardcodedPassword:
+    - "php/conexao.php":
+        reason: "Credenciais hardcoded permitidas para o ambiente de desenvolvimento."
+        expires: "2025-01-01T00:00:00Z"
+  SNYK-DEBIAN12-APR-7833616:
+    - "*":
+        reason: "Vulnerabilidade conhecida no apr/libapr1 com impacto mínimo."
+        expires: "2025-01-01T00:00:00Z"
+  SNYK-DEBIAN12-SQLITE3-6139924:
+    - "*":
+        reason: "Out-of-bounds no sqlite3/libsqlite3-0 sem impacto direto."
+        expires: "2025-01-01T00:00:00Z"
+  SNYK-DEBIAN12-PAM-8352887:
+    - "*":
+        reason: "Improper Authentication no libpam0g não impacta o ambiente."
+        expires: "2025-01-01T00:00:00Z"
+  SNYK-DEBIAN12-ZLIB-6008963:
+    - "*":
+        reason: "Integer Overflow no zlib1g sem impacto direto no uso."
+        expires: "2025-01-01T00:00:00Z"
+
