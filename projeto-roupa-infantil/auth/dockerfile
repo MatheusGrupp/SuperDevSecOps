@@ -1,0 +1,9 @@
+# auth/Dockerfile
+FROM python:3.10-slim
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+COPY app app
+COPY run.py .
+ENV FLASK_APP=run.py
+CMD ["python", "run.py"]
