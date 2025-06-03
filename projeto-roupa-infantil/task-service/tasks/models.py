@@ -18,7 +18,7 @@ class Task(models.Model):
     ]
     
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    user_id = models.UUIDField(db_index=True)  # ID do usuário do serviço de autenticação
+    user_id = models.UUIDField(db_index=True)
     title = models.CharField(max_length=255)
     description = models.TextField()
     priority = models.CharField(max_length=10, choices=PRIORITY_CHOICES, default='MEDIUM')
@@ -32,24 +32,11 @@ class Task(models.Model):
     
     # Metadados
     tags = models.JSONField(default=list, blank=True)
-    attachments = models.JSONField(default=list, blank=True)
     
-    # Campos de progresso
+    # Progresso
     progress = models.IntegerField(
         default=0,
         validators=[MinValueValidator(0), MaxValueValidator(100)]
-    )
-    estimated_hours = models.DecimalField(
-        max_digits=5, 
-        decimal_places=2, 
-        null=True, 
-        blank=True
-    )
-    actual_hours = models.DecimalField(
-        max_digits=5, 
-        decimal_places=2, 
-        null=True, 
-        blank=True
     )
     
     class Meta:
@@ -65,7 +52,6 @@ class Task(models.Model):
         return f"{self.title} - {self.get_status_display()}"
 
 class TaskHistory(models.Model):
-    """Histórico de mudanças nas tarefas para auditoria"""
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name='history')
     user_id = models.UUIDField()
@@ -77,27 +63,12 @@ class TaskHistory(models.Model):
         db_table = 'task_history'
         ordering = ['-timestamp']
 
-class TaskComment(models.Model):
-    """Comentários nas tarefas"""
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name='comments')
-    user_id = models.UUIDField()
-    content = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    
-    class Meta:
-        db_table = 'task_comments'
-        ordering = ['created_at']
-
 class TaskNotification(models.Model):
-    """Notificações relacionadas às tarefas"""
     NOTIFICATION_TYPES = [
         ('DUE_SOON', 'Prazo próximo'),
         ('OVERDUE', 'Atrasada'),
         ('ASSIGNED', 'Atribuída'),
         ('COMPLETED', 'Concluída'),
-        ('COMMENT_ADDED', 'Comentário adicionado'),
     ]
     
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -117,19 +88,14 @@ class TaskNotification(models.Model):
         ]
 
 class TaskAttachment(models.Model):
-    """Anexos das tarefas"""
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name='task_attachments')
+    task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name='attachments')
     filename = models.CharField(max_length=255)
     file_path = models.CharField(max_length=500)
     file_size = models.BigIntegerField()
     content_type = models.CharField(max_length=100)
     uploaded_by = models.UUIDField()
     uploaded_at = models.DateTimeField(auto_now_add=True)
-    
-    # Segurança
-    is_scanned = models.BooleanField(default=False)
-    scan_result = models.JSONField(null=True, blank=True)
     
     class Meta:
         db_table = 'task_attachments'
