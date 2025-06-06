@@ -1,0 +1,26 @@
+services:
+  database:
+    image: 'mysql:latest'
+    container_name: database
+    environment:
+      - MYSQL_DATABASE=bancoloja
+      - MYSQL_ROOT_PASSWORD=andre123
+      - MYSQL_USER=loja
+      - MYSQL_PASSWORD=andre123
+    ports:
+      - "3306:3306" 
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  app:
+    build: 
+      context: projeto-roupa-infantil
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    container_name: app-loja
+    environment:
+      - MYSQL_HOSTNAME=database
+      - MYSQL_USER=loja
+      - MYSQL_PASSWORD=andre123
+      - MYSQL_DATABASE=bancoloja
