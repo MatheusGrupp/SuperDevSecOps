@@ -20,4 +20,4 @@ ignore:
     - "*":
         reason: "Integer Overflow no zlib1g sem impacto direto no uso."
         expires: "2025-01-01T00:00:00Z"
-
+        

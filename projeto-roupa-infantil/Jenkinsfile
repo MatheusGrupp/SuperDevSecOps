@@ -1,4 +1,7 @@
 pipeline {
+Add comment
+More actions
+
     agent any
 
     environment {
@@ -19,6 +22,7 @@ pipeline {
         }
 
         stage('Snyk Docker Image Scan - App') {
+
             steps {
                 sh '''
                     snyk auth --auth-type=token ${SNYK_TOKEN}
@@ -36,6 +40,7 @@ pipeline {
         }
 
         stage('Build Docker Image - Database') {
+
             steps {
                 dir(SQL_DIR) {
                     sh "docker build --no-cache -t ${DOCKER_IMAGE_DB} ."
@@ -55,7 +60,7 @@ pipeline {
         }
 
         stage('Build Docker Image - App') {
-            steps {
+            steps 
                 sh "docker build --no-cache -t ${DOCKER_IMAGE_APP} -f Dockerfile ."
             }
         }
@@ -95,4 +100,3 @@ pipeline {
         }
     }
 }
-

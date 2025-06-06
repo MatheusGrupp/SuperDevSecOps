@@ -9,7 +9,7 @@ RUN apt-get update && \
 COPY . /var/www/html/
 
 # Ajusta permissões para o Apache
-RUN chown -R www-data:www-data /var/www/html \
+RUN chown -R www-data:www-data /var/www/html \Add commentMore actions
     && chmod -R 755 /var/www/html
 
 # Exibe extensões PHP instaladas para depuração
@@ -20,4 +20,3 @@ EXPOSE 80
 
 # Inicia o Apache em modo foreground
 CMD ["apache2-foreground"]
-
