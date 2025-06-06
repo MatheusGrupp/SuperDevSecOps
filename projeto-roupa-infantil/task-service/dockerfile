@@ -12,7 +12,7 @@ WORKDIR /app
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    DJANGO_SETTINGS_MODULE=auth_service.settings
+    FLASK_APP=app.py
 
 # Install Python dependencies
 COPY requirements.txt .
@@ -29,15 +29,12 @@ RUN useradd -m -u 1000 appuser && \
 # Switch to non-root user
 USER appuser
 
-# Collect static files
-RUN python manage.py collectstatic --noinput
-
 # Expose port
-EXPOSE 8000
+EXPOSE 5000
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=40s --retries=3 \
-    CMD python -c "import requests; requests.get('http://localhost:8000/health')"
+    CMD python -c "import requests; requests.get('http://localhost:5000/health')"
 
 # Run gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "3", "--threads", "2", "--worker-class", "gthread", "--log-level", "info", "--access-logfile", "-", "--error-logfile", "-", "auth_service.wsgi:application"]
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "3", "--threads", "2", "--worker-class", "gthread", "--log-level", "info", "--access-logfile", "-", "--error-logfile", "-", "app:app"]
