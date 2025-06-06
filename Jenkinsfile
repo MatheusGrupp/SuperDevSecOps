@@ -4,7 +4,7 @@ pipeline {
     environment {
         IMAGE_NAME = "andrejacopetti/lojaroupa"
         TAG = "latest"
-        DOCKERHUB_CREDENTIALS = credentials('DOCKERHUB_CREDENTIALS') // você cria isso no Jenkins
+        DOCKERHUB_CREDENTIALS = credentials('DOCKERHUB_CREDENTIALS') 
     }
 
     stages {
