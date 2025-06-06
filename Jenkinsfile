@@ -6,7 +6,7 @@ pipeline {
        TAG = "latest"
        DOCKERHUB_CREDENTIALS = credentials('DOCKERHUB_CREDENTIALS') // você cria isso no Jenkins
    }
-
+  
    stages {
        stage('Checkout') {
            steps {
