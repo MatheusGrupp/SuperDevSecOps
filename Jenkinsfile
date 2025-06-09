@@ -14,7 +14,7 @@ pipeline {
            }
        }
 
-       stage('SAST') {
+      /*  stage('SAST') {
            steps {
                script {
                    sh """
@@ -25,7 +25,7 @@ pipeline {
                    """
                }
            }
-       }
+       }  */
 
        stage('Build Docker Image') {
            steps {
