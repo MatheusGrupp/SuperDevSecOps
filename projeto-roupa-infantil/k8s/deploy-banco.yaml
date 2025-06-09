@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: database
-          image: k1cornelsenp/projeto-ecommerce-db:latest
+          image: mysql:latest
           ports:
             - containerPort: 3306
           env:
