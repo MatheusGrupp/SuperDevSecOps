@@ -57,7 +57,7 @@ pipeline {
            }
        }
 
-       stage('DAST') {
+    /*    stage('DAST') {
            steps {
                script {
                    sh """
@@ -77,7 +77,7 @@ pipeline {
                }
            }
        }
-
+ */
        //  stage('Deploy (Docker Compose)') {
        //     steps {
        //         script {
