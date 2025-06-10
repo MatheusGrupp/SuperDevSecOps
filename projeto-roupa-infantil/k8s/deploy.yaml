@@ -35,6 +35,6 @@ spec:
       volumes:
         - name: app-content
           hostPath:
-            path: /mnt/d/Users/andre/Downloads/SuperDevSecOps/projeto-roupa-infantil  # Altere este caminho para o local do código-fonte no host
+            path: /var/www/html/projeto-roupa-infantil  # Altere este caminho para o local do código-fonte no host
             type: DirectoryOrCreate
 
