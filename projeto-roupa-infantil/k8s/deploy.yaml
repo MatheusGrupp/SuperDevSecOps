@@ -1,31 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: meu-deploy
+  name: deployapp
 spec:
   replicas: 5
   selector:
     matchLabels:
-      app: meu-deploy
+      app: deployapp
   template:
     metadata:
       labels:
-        app: meu-deploy
+        app: deployapp
     spec:
       securityContext:
         fsGroup: 33  # ID de grupo comum para www-data no Debian e derivados
       containers:
-        - name: meu-deploy
-          image: k1cornelsenp/projeto-ecommerce:latest
+        - name: deployapp
+          image: andrejacopetti/lojaroupa:latest
           env:
             - name: DB_HOST
               value: "database-service"
             - name: DB_USER
-              value: "toor"
+              value: "loja"
             - name: DB_PASSWORD
-              value: "senhasecure1234#"
+              value: "andre123"
               name: DB_NAME
-              value: "projetosemestral"
+              value: "bancoloja"
           ports:
             - containerPort: 80
               name: http
@@ -35,6 +35,6 @@ spec:
       volumes:
         - name: app-content
           hostPath:
-            path: /var/www/html/projeto-ecommerce  # Altere este caminho para o local do código-fonte no host
-            type: Directory
+            path: /mnt/d/Users/andre/Downloads/SuperDevSecOps/projeto-roupa-infantil  # Altere este caminho para o local do código-fonte no host
+            type: DirectoryOrCreate
 

@@ -4,10 +4,10 @@ metadata:
   name: deploy-svc
 spec:
   selector:
-    app: meu-deploy
+    app: deployapp
   ports:
     - name: http
-      targetPort: 80
+      targetPort: 3000
       port: 80
       nodePort: 30002
   type: NodePort
