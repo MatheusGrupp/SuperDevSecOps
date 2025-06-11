@@ -10,6 +10,10 @@ function gotoCart(){
     window.location.href = "../pages/cart.html"
 }
 
+function gotoLogin(){
+    window.location.href = "../pages/login.html"
+}
+
 var data = fetch("../php/show-products.php", {
     method: "GET"
     }).then(async function(resposta) {
