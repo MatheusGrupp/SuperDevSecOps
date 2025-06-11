@@ -1,0 +1,34 @@
+﻿services:
+  app:
+    image: php:8.0-apache
+    container_name: loja-app
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html
+    command: >
+      bash -c "docker-php-ext-install mysqli pdo pdo_mysql &&
+               a2enmod rewrite &&
+               chown -R www-data:www-data /var/www/html &&
+               apache2-foreground"
+
+  db:
+    image: mysql:8.0
+    container_name: loja-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: loja_infantil
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass123
+    ports:
+      - "3306:3306"
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: loja-phpmyadmin
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: root123
