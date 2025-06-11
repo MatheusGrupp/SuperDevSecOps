@@ -1,13 +1,10 @@
 pipeline {
-Add comment
-More actions
-
     agent any
 
     environment {
-        DOCKER_REPO = 'k1cornelsenp/projeto-ecommerce'
+        DOCKER_REPO = 'andrejacopetti/lojaroupa'
         DOCKER_IMAGE_APP = "${DOCKER_REPO}:latest"
-        DOCKER_IMAGE_DB = "k1cornelsenp/projeto-ecommerce-db:latest"
+        DOCKER_IMAGE_DB = "mysql:latest"
         K8S_DIR = 'k8s/'
         SQL_DIR = 'sql/'
         SNYK_TOKEN = credentials('SNYK_AUTH')
@@ -17,15 +14,14 @@ More actions
     stages {
         stage('Clone Repository') {
             steps {
-                git url: 'https://github.com/k1cornelsen/projeto-ecommerce.git'
+                checkout scm
             }
         }
 
         stage('Snyk Docker Image Scan - App') {
-
             steps {
                 sh '''
-                    snyk auth --auth-type=token ${SNYK_TOKEN}
+                    snyk auth "${SNYK_TOKEN}"
                     snyk container test ${DOCKER_IMAGE_APP} --severity-threshold=medium --file=/var/www/html/projeto-ecommerce/Dockerfile --exclude-base-image-vulns
                 '''
             }
@@ -33,14 +29,13 @@ More actions
 
         stage('Snyk Docker Image Scan - Database') {
             steps {
-                sh """
+                sh '''
                     snyk container test ${DOCKER_IMAGE_DB} --severity-threshold=medium --file=/var/www/html/projeto-ecommerce/sql/Dockerfile --exclude-base-image-vulns
-                """
+                '''
             }
         }
 
         stage('Build Docker Image - Database') {
-
             steps {
                 dir(SQL_DIR) {
                     sh "docker build --no-cache -t ${DOCKER_IMAGE_DB} ."
@@ -60,7 +55,7 @@ More actions
         }
 
         stage('Build Docker Image - App') {
-            steps 
+            steps {
                 sh "docker build --no-cache -t ${DOCKER_IMAGE_APP} -f Dockerfile ."
             }
         }
@@ -75,6 +70,7 @@ More actions
                 }
             }
         }
+
         stage('Deploy to Kubernetes') {
             steps {
                 withCredentials([file(credentialsId: 'KUBE_CONFIG', variable: 'KUBECONFIG')]) {

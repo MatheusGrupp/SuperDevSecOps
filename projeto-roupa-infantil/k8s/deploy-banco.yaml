@@ -15,18 +15,18 @@ spec:
     spec:
       containers:
         - name: database
-          image: k1cornelsenp/projeto-ecommerce-db:latest
+          image: mysql:latest
           ports:
             - containerPort: 3306
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: "senhasecure123#"
+              value: "andre123#"
             - name: MYSQL_DATABASE
-              value: "projetosemestral"
+              value: "bancoloja"
             - name: MYSQL_USER
-              value: "toor"
+              value: "loja"
             - name: MYSQL_PASSWORD
-              value: "senhasecure1234#"
+              value: "andre123"
           volumeMounts:
             - name: database-storage
               mountPath: /var/lib/mysql

@@ -16,7 +16,7 @@ spec:
         fsGroup: 33  # ID de grupo comum para www-data no Debian e derivados
       containers:
         - name: meu-deploy
-          image: k1cornelsenp/projeto-ecommerce:latest
+          image: andrejacopetti/lojaroupa:latest
           env:
             - name: DB_HOST
               value: "database-service"
