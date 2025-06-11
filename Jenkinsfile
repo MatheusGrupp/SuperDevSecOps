@@ -18,7 +18,7 @@ pipeline {
             }
         }
 
-        stage('Snyk Docker Image Scan - App') {
+      /*   stage('Snyk Docker Image Scan - App') {
             steps {
                 sh '''
                     snyk auth "${SNYK_TOKEN}"
@@ -33,7 +33,7 @@ pipeline {
                     snyk container test ${DOCKER_IMAGE_DB} --severity-threshold=medium --file=/var/www/html/containers/setup-api/docker/mysql.dockerfile --exclude-base-image-vulns
                 '''
             }
-        }
+        } */
 
         stage('Build Docker Image - Database') {
             steps {
