@@ -1,22 +1,60 @@
-FROM php:8.1-apache
+# Dockerfile
+FROM php:8.2-apache
 
-# Atualiza o repositório e instala a extensão mysqli
-RUN apt-get update && \
-    docker-php-ext-install mysqli && \
-    docker-php-ext-enable mysqli
+# Instalar extensões PHP necessárias
+RUN apt-get update && apt-get install -y \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    libzip-dev \
+    unzip \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) \
+    gd \
+    mysqli \
+    pdo \
+    pdo_mysql \
+    zip \
+    opcache
 
-# Copia o código da aplicação para o diretório padrão do Apache
+# Habilitar mod_rewrite do Apache
+RUN a2enmod rewrite headers
+
+# Configurar Apache
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
+# Configuração personalizada do Apache
+COPY <<EOF /etc/apache2/sites-available/000-default.conf
+<VirtualHost *:80>
+    DocumentRoot /var/www/html
+    
+    <Directory /var/www/html>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+    
+    ErrorLog \${APACHE_LOG_DIR}/error.log
+    CustomLog \${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+EOF
+
+# Configurar PHP
+RUN echo "memory_limit = 256M" > /usr/local/etc/php/conf.d/memory.ini && \
+    echo "upload_max_filesize = 64M" >> /usr/local/etc/php/conf.d/memory.ini && \
+    echo "post_max_size = 64M" >> /usr/local/etc/php/conf.d/memory.ini
+
+# Copiar arquivos da aplicação
 COPY . /var/www/html/
 
-# Ajusta permissões para o Apache
-RUN chown -R www-data:www-data /var/www/html \Add commentMore actions
-    && chmod -R 755 /var/www/html
+# Dar permissões corretas
+RUN chown -R www-data:www-data /var/www/html && \
+    chmod -R 755 /var/www/html
 
-# Exibe extensões PHP instaladas para depuração
-RUN php -m
+# Criar diretório de uploads se não existir
+RUN mkdir -p /var/www/html/uploads && \
+    chown -R www-data:www-data /var/www/html/uploads
 
-# Expõe a porta 80 para o Apache
 EXPOSE 80
 
-# Inicia o Apache em modo foreground
 CMD ["apache2-foreground"]
